@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpdataService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-movies',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoviesPage implements OnInit {
 
-  constructor() { }
+  constructor(private httpdataService:HttpdataService) { }
 
   ngOnInit() {
   }
+
 
 }

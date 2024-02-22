@@ -1,9 +1,11 @@
 
-import { Injectable } from '@angular/core';
+// import { Injectable } from '@angular/core';
+//
+//import { HttpClient } from "@angular/common/http";
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 // export class MovieService {
 
 //   constructor() { }
@@ -11,34 +13,36 @@ import { Injectable } from '@angular/core';
 
 
 
-////import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-////import { HttpParams } from '@capacitor/core';
+// ////import { Injectable } from '@angular/core';
+// import { HttpClient, HttpParams } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+// import { map } from 'rxjs/operators';
+// import { MovieDetailsPage } from '../pages/movie-details/movie-details.page';
+// ////import { HttpParams } from '@capacitor/core';
 
-// TODO Hay que adaptar nombres, basarse en ejemplos sesiones clase. 
+// // TODO Hay que adaptar nombres, basarse en ejemplos sesiones clase. 
  
-// Typescript custom enum for search types (optional)
-export enum SearchType {
-  all = '',
-  movie = 'movie',
-  series = 'series',
-  episode = 'episode'
-}
+// // Typescript custom enum for search types (optional)
+// export enum SearchType {
+//   all = '',
+//   movie = 'movie',
+//   series = 'series',
+//   episode = 'episode'
+// }
  
-@Injectable({
-  providedIn: 'root'
-})
-export class MovieService {
-  url = 'http://www.omdbapi.com/';
-  apiKey = 'cc1e061a'; // <-- Enter your own key here!    
+// @Injectable({
+//   providedIn: 'root'
+// })
+
+// export class MovieService {
+//   url = 'http://www.omdbapi.com/';
+//   apiKey = 'cc1e061a'; // <-- Enter your own key here!    
  
-  /**
-   * Constructor of the Service with Dependency Injection
-   * @param http The standard Angular HttpClient to make requests
-   */
-  constructor(private http: HttpClient) { }
+//   /**
+//    * Constructor of the Service with Dependency Injection
+//    * @param http The standard Angular HttpClient to make requests
+//    */
+//   constructor(private http: HttpClient) { }
  
   // /**
   // * Get data from the OmdbApi 
@@ -91,7 +95,7 @@ export class MovieService {
 
 
 
-  // (References: * "", R:\UserWksp\wks_git\chorraschorrez_gmail\chorraschorrez.github.io\omdb.js  )
+  // (References: * "miappionic, httpdata.service.ts", R:\UserWksp\wks_git\chorraschorrez_gmail\chorraschorrez.github.io\omdb.js  )
 
 //  function findMovie(title){
 //    console.log("Entrando en findMovie...");
@@ -107,34 +111,27 @@ export class MovieService {
     //             throw "Ha ocurrido un error " + xmlHttp.status;
     //         }
     //     } 
-    }    
-
-    // console.debug(encodeURI(URL));
-    // xmlHttp.open("GET", encodeURI(URL), true); // encodeURI adapta la cadena URL al formato de la web
-    // xmlHttp.send();
+// }    
 
 
-      // References: * "", https://github.com/fpaniaguajavascript/miappionic/blob/main/src/app/services/httpdata.service.ts
-    export class HttpdataService {
-      static URL = "https://www.omdbapi.com/";
-      constructor(private clienteHttp:HttpClient) { }
+  // (References: * "miappionic, httpdata.service.ts", R:\UserWksp\wks_git\chorraschorrez_gmail\chorraschorrez.github.io\omdb.js  )
 
-      // TODO: Mover constante a Environment   (key usada en ejercicio mío de clase: )
-      const OMDB_API_KEY = 'cc1e061a';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-      getMovie(titulo:string) {
-        console.debug("Entrando en getMovie(), titulo="+titulo);
-        const parametros = new HttpParams().
-          append('apikey', this.OMDB_API_KEY).
-          append('t', titulo);
-//        return this.clienteHttp?.get<Pelicula>(HttpdataService.URL, {params:parametros});//Devuelve un Observable
-      }
-    }
-
-
-
-
-
+// @Injectable({
+//   providedIn: 'root'
+// })  
+export class HttpdataService {
+  static url = 'http://www.omdbapi.com/';
+  static OMDB_API_KEY = 'cc1e061a'; // <-- Enter your own key here!     
+  constructor(private clienteHttp:HttpClient) { 
+  }
+  getMovie(titulo:string) {
+    const parametros = new HttpParams().
+      append('apikey', HttpdataService.OMDB_API_KEY).
+      append('t', titulo);
+    return this.clienteHttp.get(HttpdataService.url, {params:parametros});
+  }
 
 
 }

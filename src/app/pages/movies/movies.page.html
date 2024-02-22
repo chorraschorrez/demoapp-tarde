@@ -15,3 +15,14 @@
     </ion-toolbar>
   </ion-header>
 </ion-content>
+
+<ion-item-sliding *ngFor="let movieDetails of MoviesPage">
+  <ion-item lines="none">
+    <ion-icon name="film"></ion-icon>
+    <ion-label>{{movieDetails.Title}}</ion-label>
+    <ion-icon name="chatbox"></ion-icon>
+    <ion-label>{{movieDetails.Genre}}</ion-label>
+    <ion-label>
+      <ion-img [src]="movieDetails.Poster" class="imagen"></ion-img>
+    </ion-label>
+  </ion-item>
